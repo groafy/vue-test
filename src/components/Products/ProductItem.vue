@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import ProductRatings from "./ProductRatings.vue";
-import { IProductItem } from '@/types';
+import { type IProductItem } from '@/types';
 
 interface IProps {
   item: IProductItem

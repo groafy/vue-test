@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import ProductItem from "./ProductItem.vue";
 import ProductSkeleton from "./ProductSkeleton.vue";
-import { IProductItem } from "@/types";
+import { type IProductItem } from "@/types";
 
 interface IProps {
   products: IProductItem[],

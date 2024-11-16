@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, defineEmits, onMounted, watch, computed } from "vue";
-import { ICategory } from '@/types';
+import { type ICategory } from '@/types';
 import FilterCategorySkeleton from "./FilterCategorySkeleton.vue";
 
 interface IProps {

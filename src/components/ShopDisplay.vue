@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, computed, onUnmounted } from "vue";
-import { IProductItem, ICategory } from "@/types";
+import { type IProductItem, type ICategory } from "@/types";
 import ProductList from "./Products/ProductList.vue";
 import FilterBar from "./Filter/FilterBar.vue";
 import FilterSearchInput from "./Filter/FilterSearchInput.vue";

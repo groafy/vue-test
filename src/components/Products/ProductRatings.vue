@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { IProductRating } from "@/types";
+import { type IProductRating } from "@/types";
 interface IProps {
   ratings: IProductRating
 }
