@@ -9,7 +9,7 @@
     </li>
     <li>
       <span class="sr-only">Rating: {{ rate }} out of 5</span>
-      <span aria-hidden="true">({{ rate }})</span>
+      <span aria-hidden="true" class="smallText">({{ rate }})</span>
     </li>
   </ul>
 </template>

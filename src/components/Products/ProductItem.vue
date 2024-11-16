@@ -19,12 +19,12 @@
     </div>
     <div class="productItem__content">
       <div class="productItem__textContainer">
-        <h2 class="productItem__textTitle">{{ item.title }}</h2>
-        <p class="productItem__textDescription">{{ item.description }}</p>
+        <h2 class="productItem__textTitle h6">{{ item.title }}</h2>
+        <p class="productItem__textDescription smallText">{{ item.description }}</p>
       </div>
       <div class="productItem__infoContainer">
         <ProductRatings :ratings="item.rating" />
-        <span class="productItem__infoPrice">$ {{ item.price }}</span>
+        <span class="productItem__infoPrice introText">$ {{ item.price }}</span>
       </div>
     </div>
   </div>
@@ -148,8 +148,6 @@ const addToCart = (e: Event) => {
 }
 
 .productItem__textTitle {
-  font-size: 1rem;
-  font-weight: bold;
   display: -webkit-box;
   overflow: hidden;
   line-clamp: 2;
@@ -164,7 +162,6 @@ const addToCart = (e: Event) => {
 }
 
 .productItem__textDescription {
-  font-size: 0.75rem;
   display: -webkit-box;
   overflow: hidden;
   line-clamp: 3;

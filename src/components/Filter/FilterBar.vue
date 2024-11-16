@@ -4,7 +4,8 @@
       <li v-for="category in categoriesReactive" :key="category.value" class="filterBar__listItem">
         <input type="checkbox" v-model="category.checked" class="checkbox-input" :id="getElementID(category.value)"
           @change="onInputChange($event, category)">
-        <label :for="getElementID(category.value)">{{ category.displayName }} ({{ category.count }})</label>
+        <label :for="getElementID(category.value)" class="text">{{ category.displayName }} ({{ category.count
+          }})</label>
       </li>
     </ul>
     <ul class="filterBar__list" v-if="isLoading" aria-busy="true" aria-live="polite"
@@ -119,7 +120,6 @@ onMounted(() => {
 }
 
 .filterBar__listItem label {
-  font-size: 1rem;
   cursor: pointer;
 }
 

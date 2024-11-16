@@ -1,8 +1,8 @@
 <template>
   <section class="filterSearchInput__base">
     <div class="filterSearchInput__inputContainer">
-      <label for="search-input-filter">Search for products...</label>
-      <input type="search" id="search-input-filter" placeholder="" class="filterSearchInput__inputItem"
+      <label for="search-input-filter text">Search for products...</label>
+      <input type="search" id="search-input-filter" placeholder="" class="filterSearchInput__inputItem text"
         v-model="inputValue" autocomplete="off">
       <button type="button" class="filterSearchInput__resetBtn" v-show="inputValue.length" @click="resetInput">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 -.5 25 25">
