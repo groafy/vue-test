@@ -16,6 +16,16 @@
           <span>Add to Cart</span>
         </button>
       </div>
+      <div class="productItem__buttonFallbackContainer">
+        <button type="button" class="productItem__buttonFallbackItem" @click="addToCart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6.3 5H21l-2 7H7.38M20 16H8L6 3H3m6 17a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm11 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
+          </svg>
+          <span class="sr-only">Add to Cart</span>
+        </button>
+      </div>
     </div>
     <div class="productItem__content">
       <div class="productItem__textContainer">
@@ -123,6 +133,8 @@ const formattedPrice = (price: number): string => {
   position: absolute;
   z-index: 35;
   top: 132px;
+  padding: 0 12px;
+  width: 100%;
 
   @media (min-width: 576px) {
     top: 152px;
@@ -139,6 +151,8 @@ const formattedPrice = (price: number): string => {
 
 .productItem__buttonItem {
   opacity: 0;
+  width: 100%;
+  justify-content: center;
   transition: transform var(--d-short), opacity var(--d-extrashort), background var(--d-short);
 }
 
@@ -152,6 +166,11 @@ const formattedPrice = (price: number): string => {
   outline-offset: 4px;
   opacity: 1;
   transform: translateY(-12px);
+}
+
+/* Needed here to be able to see with enough contrast with the image */
+.productItem__buttonItem:hover {
+  box-shadow: var(--bs-active);
 }
 
 .productItem__content {
@@ -211,13 +230,42 @@ const formattedPrice = (price: number): string => {
 
 .productItem__infoPrice {
   font-weight: bold;
+  color: var(--color-heading);
+}
+
+.productItem__buttonFallbackContainer {
+  display: none;
+  position: absolute;
+  z-index: 35;
+  top: 8px;
+  right: 8px;
+}
+
+.productItem__buttonFallbackItem {
+  border-radius: 50%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--color-active);
+  backdrop-filter: blur(4px);
+}
+
+.productItem__buttonFallbackItem:focus-visible {
+  outline: 2px solid var(--default-focus);
+  outline-offset: 3px;
 }
 
 @media (pointer:none),
 (pointer:coarse) {
   .productItem__buttonItem {
-    opacity: 1;
-    transform: translateY(-12px);
+    display: none;
+  }
+
+  .productItem__buttonFallbackContainer {
+    display: block;
   }
 }
 </style>

@@ -86,6 +86,7 @@ watch(
   max-width: calc(100% - 24px);
   overflow: hidden;
   cursor: default;
+  pointer-events: none;
 }
 
 .filterSearchInput__inputItem {
@@ -124,9 +125,11 @@ watch(
   border-radius: 50%;
   cursor: pointer;
   color: var(--text);
+  padding: 0;
 }
 
 .filterSearchInput__resetBtn:focus-visible {
   outline: 2px solid var(--default-focus);
+  outline-offset: -3px;
 }
 </style>

@@ -1,22 +1,22 @@
 <template>
   <header class="headerNav__base">
     <div class="headerNav__wrapper container--default">
-      <div>
-        <span>HelloWorldShop</span>
-      </div>
-      <div>
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-          viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M6.3 5H21l-2 7H7.38M20 16H8L6 3H3m6 17a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm11 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
+      <div class="headerNav__logoContainer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">
+          <path fill="#41B883" d="m2 4 14 24L30 4h-5.5L16 18.5 7.5 4H2Z" />
+          <path fill="#35495E" d="M7.5 4 16 18.5 24.5 4h-5l-3.43 6.01L12.5 4h-5Z" />
         </svg>
+        <span class="introText headerNav__logoTitle">HelloWorldShop</span>
+      </div>
+      <div class="headerNav__controlsContainer">
+        <ThemeSwitcher />
       </div>
     </div>
   </header>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
+import ThemeSwitcher from './ThemeSwitcher.vue';
 </script>
 
 <style lang="css" scoped>
@@ -36,5 +36,35 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+}
+
+.headerNav__controlsContainer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.headerNav__logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerNav__logoTitle {
+  font-weight: 700;
+  color: var(--color-heading);
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip: rect(0, 0, 0, 0);
+
+  @media (min-width: 992px) {
+    position: static;
+    overflow: visible;
+    width: auto;
+    height: auto;
+    clip: auto;
+  }
 }
 </style>
