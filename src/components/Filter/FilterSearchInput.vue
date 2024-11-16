@@ -1,7 +1,7 @@
 <template>
   <section class="filterSearchInput__base">
     <div class="filterSearchInput__inputContainer">
-      <label for="search-input-filter text">Search for products...</label>
+      <label for="search-input-filter" class="text">Search for products...</label>
       <input type="search" id="search-input-filter" placeholder="" class="filterSearchInput__inputItem text"
         v-model="inputValue" autocomplete="off">
       <button type="button" class="filterSearchInput__resetBtn" v-show="inputValue.length" @click="resetInput">
@@ -61,7 +61,6 @@ watch(
 
 .filterSearchInput__inputContainer {
   display: flex;
-  max-width: 700px;
   flex-direction: column;
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -69,6 +68,10 @@ watch(
   position: relative;
   height: 48px;
   transition: border-color var(--d-extrashort), background var(--d-short);
+
+  @media (min-width: 992px) {
+    max-width: 700px;
+  }
 }
 
 .filterSearchInput__inputContainer:hover {
@@ -104,7 +107,7 @@ watch(
 }
 
 .filterSearchInput__inputContainer:has(.filterSearchInput__inputItem:placeholder-shown)>label {
-  bottom: 11px;
+  bottom: 10px;
   cursor: text;
 }
 

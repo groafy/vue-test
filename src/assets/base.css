@@ -52,7 +52,7 @@
   --color-active-hover: #3644d6;
 
   --color-btn-bg: var(--vt-c-black-mute);
-  --color-btn-bg-hover: var(--vt-c-black);
+  --color-btn-bg-hover: var(--vt-c-black-soft);
 
   --bs-active: 0px 2px 4px 0px rgba(0, 0, 0, 0.10), 0px 2px 8px 0px rgba(30, 105, 200, 0.33)
 }

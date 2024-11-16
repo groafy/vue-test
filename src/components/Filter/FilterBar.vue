@@ -15,8 +15,8 @@
       </li>
     </ul>
     <button type="button" class="btn filterBar__resetBtn" v-show="hasSelectedValue && !isLoading"
-      @click="onCategoryResetClicked">
-      <span>Reset</span>
+      @click="onCategoryResetClicked" aria-label="Reset all current active filter categories">
+      <span aria-hidden="true">Reset</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m16 8-8 8m0-8 8 8" />
       </svg>
@@ -64,24 +64,16 @@ const onInputChange = (e: Event, category: ICategory) => {
 }
 
 const createReactiveCategories = () => {
-  if (props.categories && props.categories.length) {
-    categoriesReactive.value = [];
-
-    props.categories.forEach(category => {
-      categoriesReactive.value.push({
-        ...category,
-        checked: props.initCategories.includes(category.value) ? true : false
-      })
-    });
-
-    categoriesReactive.value.sort((a, b) => b.count - a.count);
+  if (props.categories.length) {
+    categoriesReactive.value = props.categories.map(category => ({
+      ...category,
+      checked: props.initCategories.includes(category.value),
+    })).sort((a, b) => b.count - a.count);
   }
 }
 
 const categoriesReactive = ref<Array<ICategoryReactive>>([]);
-const hasSelectedValue = computed(() => {
-  return !!categoriesReactive.value.find(x => x.checked);
-});
+const hasSelectedValue = computed(() => categoriesReactive.value.some(x => x.checked));
 
 
 onMounted(() => {

@@ -8,8 +8,8 @@
       </svg>
     </li>
     <li>
-      <span class="sr-only">Rating: {{ rate }} out of 5</span>
-      <span aria-hidden="true" class="smallText">({{ rate }})</span>
+      <span class="sr-only">{{ getRatingDescription() }}</span>
+      <span aria-hidden="true" class="smallText" :title="getRatingDescription()">({{ rate }})</span>
     </li>
   </ul>
 </template>
@@ -18,6 +18,10 @@
 import { type IProductRating } from "@/types";
 interface IProps {
   ratings: IProductRating
+}
+
+const getRatingDescription = () => {
+  return `Rating: ${rate} out of 5`;
 }
 
 const { ratings } = defineProps<IProps>();

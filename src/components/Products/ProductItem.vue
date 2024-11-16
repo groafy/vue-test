@@ -53,7 +53,7 @@ const { item } = defineProps<IProps>();
 const addToCart = (e: Event) => {
   e.stopPropagation();
 
-  alert("Added to cart")
+  alert("Added to fake cart")
 }
 
 const formattedPrice = (price: number): string => {

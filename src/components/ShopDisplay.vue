@@ -15,6 +15,9 @@ import FilterBar from "./Filter/FilterBar.vue";
 import FilterSearchInput from "./Filter/FilterSearchInput.vue";
 
 const getUrl = () => {
+  // Due to this task im using only one api url
+  // But if this was a real project we could adapt this with the url params
+  // Not needed here because I use computed for the filtering (not calling api)
   return `https://fakestoreapi.com/products`;
 }
 
@@ -52,6 +55,8 @@ const loadProducts = async () => {
     productCategories.value = createCategories(responseJson);
   } catch (err) {
     console.error(err);
+    // Would be better to show some toast instead of alert
+    alert("There was an error loading the products.");
   } finally {
     isLoading.value = false;
   }
@@ -125,6 +130,10 @@ const updateFromUrl = () => {
   const params = new URLSearchParams(url.search);
 
   searchTerm.value = params.get('search') || '';
+  // Using this variable only for init so that 
+  // later it doesnt trigger unwanted rerenders of the filter component
+  // This is only for getting the initial state from the url , later 
+  // is uses the selectedCategories for filtering etc..
   urlCategories.value = params.getAll('category');
   selectedCategories.value = urlCategories.value;
 };
@@ -138,15 +147,19 @@ const urlCategories = ref<Array<string>>([]);
 
 
 const productsComputed = computed(() => {
+  const searchTermLower = searchTerm.value.toLowerCase();
+  // Using set so this function could grow later on, before it was .includes()
+  const selectedCategorySet = new Set(selectedCategories.value);
+
   return productItems.value.filter(item => {
-    const matchesCategory = selectedCategories.value.length
-      ? selectedCategories.value.includes(item.category)
+    const matchesCategory = selectedCategorySet.size
+      ? selectedCategorySet.has(item.category)
       : true;
 
-    const matchesSearchTerm = item.title.toLowerCase().includes(searchTerm.value.toLowerCase());
+    const matchesSearchTerm = item.title.toLowerCase().includes(searchTermLower);
 
     return matchesCategory && matchesSearchTerm;
-  })
+  });
 })
 
 onMounted(() => {
