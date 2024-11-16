@@ -1,4 +1,4 @@
-export interface IProdcutRating {
+export interface IProductRating {
   rate: number,
   count: number
 }
@@ -8,7 +8,7 @@ export interface IProductItem {
   description: string,
   id: number,
   image: string,
-  rating: IProdcutRating,
+  rating: IProductRating,
   title: string
 }
 

@@ -23,7 +23,7 @@
         <p class="productItem__textDescription">{{ item.description }}</p>
       </div>
       <div class="productItem__infoContainer">
-        <div>Rating bar</div>
+        <ProductRatings :ratings="item.rating" />
         <span>$ {{ item.price }}</span>
       </div>
     </div>
@@ -31,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import ProductRatings from "./ProductRatings.vue";
 import { IProductItem } from '@/types';
 
 interface IProps {
@@ -115,14 +116,14 @@ const addToCart = (e: Event) => {
 
 .productItem__base:hover .productItem__buttonItem {
   opacity: 1;
-  transform: translateY(-24px);
+  transform: translateY(-12px);
 }
 
 .productItem__buttonItem:focus-visible {
   outline: 2px solid var(--default-focus);
   outline-offset: 4px;
   opacity: 1;
-  transform: translateY(-24px);
+  transform: translateY(-12px);
 }
 
 .productItem__content {
@@ -217,7 +218,7 @@ const addToCart = (e: Event) => {
 (pointer:coarse) {
   .productItem__buttonItem {
     opacity: 1;
-    transform: translateY(-24px);
+    transform: translateY(-12px);
   }
 }
 </style>
