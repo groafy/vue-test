@@ -19,7 +19,7 @@
     </div>
     <div class="productItem__content">
       <div class="productItem__textContainer">
-        <h3 class="productItem__textTitle">{{ item.title }}</h3>
+        <h2 class="productItem__textTitle">{{ item.title }}</h2>
         <p class="productItem__textDescription">{{ item.description }}</p>
       </div>
       <div class="productItem__infoContainer">

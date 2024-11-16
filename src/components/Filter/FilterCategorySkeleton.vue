@@ -22,7 +22,7 @@
 }
 
 .filterCategorySkeleton__inputMock {
-  background: gray;
+  background: var(--color-background-mute);
   width: 24px;
   min-width: 24px;
   height: 24px;
@@ -36,7 +36,7 @@
   overflow: hidden;
   position: relative;
   height: 24px;
-  background: gray;
+  background: var(--color-background-mute);
   border-radius: 4px;
 }
 

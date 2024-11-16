@@ -8,3 +8,7 @@
 .page-section {
   margin: var(--section-gap) 0;
 }
+
+.page-section-sm {
+  margin: var(--section-gap-sm) 0;
+}

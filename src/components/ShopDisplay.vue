@@ -127,7 +127,7 @@ const updateFromUrl = () => {
   searchTerm.value = params.get('search') || '';
   urlCategories.value = params.getAll('category');
 
-  // Leave this seperate to prevent dual prop rerendering
+  // Leave this seperate to prevent dual prop rerendering as selectedCategories later get changed
   if (urlCategories.value.length) {
     selectedCategories.value = urlCategories.value;
   }

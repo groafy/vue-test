@@ -12,10 +12,11 @@
         <FilterCategorySkeleton />
       </li>
     </ul>
-    <button type="button" class="btn" v-show="hasSelectedValue && !isLoading" @click="onCategoryResetClicked">
-      <span>Remove selected filters</span>
+    <button type="button" class="btn filterBar__resetBtn" v-show="hasSelectedValue && !isLoading"
+      @click="onCategoryResetClicked">
+      <span>Reset</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m16 8-8 8m0-8 8 8" />
+        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m16 8-8 8m0-8 8 8" />
       </svg>
     </button>
   </section>
@@ -40,7 +41,7 @@ const emit = defineEmits(["categoryChange", "categoryReset"]);
 const props = defineProps<IProps>();
 
 const getElementID = (value: string) => {
-  return `element-${value.replace(/\s+/g, "")}-id`
+  return `element-${value.replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, "")}-id`;
 }
 
 const onCategoryResetClicked = () => {
@@ -119,6 +120,10 @@ onMounted(() => {
 .filterBar__listItem label {
   font-size: 1rem;
   cursor: pointer;
+}
+
+.filterBar__resetBtn {
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 992px) {

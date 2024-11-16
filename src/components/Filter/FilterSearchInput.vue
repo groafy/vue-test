@@ -3,7 +3,7 @@
     <div class="filterSearchInput__inputContainer">
       <label for="search-input-filter">Search for products...</label>
       <input type="search" id="search-input-filter" placeholder="" class="filterSearchInput__inputItem"
-        v-model="inputValue" @input="onInput">
+        v-model="inputValue" autocomplete="off">
     </div>
   </section>
 </template>

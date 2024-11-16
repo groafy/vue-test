@@ -1,4 +1,4 @@
-export const debounce = (fn: () => any, wait: number) => {
+export const debounce = (fn: (...args: any[]) => any, wait: number) => {
   let timeout: number | null;
   const debounced = (...args: any) => {
     const context = this;
