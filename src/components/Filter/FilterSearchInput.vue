@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+// TODO DISABLE SEARCH WHEN IS LOADING
 import { ref, watch, defineEmits } from "vue";
 import { debounce } from "@/utils";
 interface IProps {

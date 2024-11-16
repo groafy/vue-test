@@ -48,6 +48,9 @@ const loadProducts = async () => {
   try {
     isLoading.value = true;
 
+    // For testing skeletons only
+    // await new Promise(resolve => setTimeout(resolve, 5000));
+
     const response = await fetch(getUrl());
     const responseJson = await response.json();
 
