@@ -57,7 +57,31 @@ const loadProducts = async () => {
 
 const onCategoryReset = () => {
   selectedCategories.value = [];
+
+  resetUrlParams();
 }
+
+const resetUrlParams = () => {
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+
+  params.delete('category');
+
+  history.pushState(null, '', url.pathname);
+};
+
+const updateUrlParams = () => {
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+
+  params.delete('category');
+
+  selectedCategories.value.forEach(category => {
+    params.append('category', category);
+  });
+
+  history.pushState(null, '', `${url.pathname}?${params.toString()}`);
+};
 
 const onCategoryChange = (value: boolean, key: string) => {
   if (value) {
@@ -69,6 +93,8 @@ const onCategoryChange = (value: boolean, key: string) => {
       selectedCategories.value.splice(indexOfCategory, 1);
     }
   }
+
+  updateUrlParams();
 }
 
 const isLoading = ref<boolean>(false);
