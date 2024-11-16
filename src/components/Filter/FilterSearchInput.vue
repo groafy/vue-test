@@ -4,6 +4,13 @@
       <label for="search-input-filter">Search for products...</label>
       <input type="search" id="search-input-filter" placeholder="" class="filterSearchInput__inputItem"
         v-model="inputValue" autocomplete="off">
+      <button type="button" class="filterSearchInput__resetBtn" v-show="inputValue.length" @click="resetInput">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 -.5 25 25">
+          <path fill="#000"
+            d="M6.97 16.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm6.06-3.94a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm-1.06-1.06a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm6.06-3.94a.75.75 0 0 0-1.06-1.06l1.06 1.06Zm-5 3.94a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.94 6.06a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-5-5a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM8.03 6.47a.75.75 0 0 0-1.06 1.06l1.06-1.06Zm0 11.06 5-5-1.06-1.06-5 5 1.06 1.06Zm5-5 5-5-1.06-1.06-5 5 1.06 1.06Zm-1.06 0 5 5 1.06-1.06-5-5-1.06 1.06Zm1.06-1.06-5-5-1.06 1.06 5 5 1.06-1.06Z" />
+        </svg>
+        <span class="sr-only">Reset search input</span>
+      </button>
     </div>
   </section>
 </template>
@@ -22,6 +29,10 @@ const onInputChange = (newVal: string) => {
   // Could be done instantly but with search inputs its better to debounce the value to limit api calls
   emit('searchChanged', newVal);
 };
+
+const resetInput = () => {
+  inputValue.value = "";
+}
 
 const debouncedOnInputChange = debounce(onInputChange, 300);
 const inputValue = ref(props.initSearch || "");
@@ -67,7 +78,7 @@ watch(
 .filterSearchInput__inputContainer label {
   position: absolute;
   bottom: calc(100% + 12px);
-  transition: bottom var(--d-short);
+  transition: bottom var(--d-extrashort);
   left: 12px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -85,6 +96,10 @@ watch(
   background: transparent;
 }
 
+.filterSearchInput__inputItem::-webkit-search-cancel-button {
+  display: none;
+}
+
 .filterSearchInput__inputContainer:has(.filterSearchInput__inputItem:placeholder-shown)>label {
   bottom: 11px;
   cursor: text;
@@ -93,5 +108,22 @@ watch(
 .filterSearchInput__inputContainer:has(.filterSearchInput__inputItem:focus-visible) {
   border-color: var(--default-focus);
   outline: 1px solid var(--default-focus);
+}
+
+.filterSearchInput__resetBtn {
+  position: absolute;
+  height: 48px;
+  width: 48px;
+  right: 0;
+  top: 0;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.filterSearchInput__resetBtn:focus-visible {
+  outline: 2px solid var(--default-focus);
 }
 </style>
