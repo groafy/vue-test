@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue";
-</script>
-
 <template>
-  <hello-world message="Hello!"/>
+  <main class="container--default">
+    <ShopDisplay />
+  </main>
 </template>
 
-<style scoped>
-</style>
+<script setup lang="ts">
+import ShopDisplay from "@/components/ShopDisplay.vue";
+</script>
+
+
+<style scoped></style>
