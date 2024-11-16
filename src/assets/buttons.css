@@ -1,7 +1,5 @@
 .btn {
   padding: 12px 24px;
-  font-weight: 600;
-  font-size: 1rem;
   border-radius: 8px;
   background: var(--color-btn-bg);
   color: white;
@@ -12,6 +10,13 @@
   align-items: center;
   gap: 12px;
   transition: background var(--d-short);
+}
+
+.btn span,
+.btn .btn__text {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 700;
 }
 
 .btn:hover {

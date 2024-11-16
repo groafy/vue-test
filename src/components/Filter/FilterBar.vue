@@ -14,7 +14,7 @@
         <FilterCategorySkeleton />
       </li>
     </ul>
-    <button type="button" class="btn btn--primary filterBar__resetBtn" v-show="hasSelectedValue && !isLoading"
+    <button type="button" class="btn filterBar__resetBtn" v-show="hasSelectedValue && !isLoading"
       @click="onCategoryResetClicked">
       <span>Reset</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

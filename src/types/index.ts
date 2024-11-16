@@ -9,7 +9,8 @@ export interface IProductItem {
   id: number,
   image: string,
   rating: IProductRating,
-  title: string
+  title: string,
+  price: number
 }
 
 export interface ICategory {

@@ -7,7 +7,7 @@
       <img class="productItem__imgItem" :src="item.image" :alt="'Product image for ' + item.title" width="275"
         height="235">
       <div class="productItem__buttonContainer">
-        <button type="button" class="btn productItem__buttonItem" @click="addToCart">
+        <button type="button" class="btn btn--primary productItem__buttonItem" @click="addToCart">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
             aria-hidden="true">
             <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -24,7 +24,7 @@
       </div>
       <div class="productItem__infoContainer">
         <ProductRatings :ratings="item.rating" />
-        <span class="productItem__infoPrice introText">$ {{ item.price }}</span>
+        <span class="productItem__infoPrice introText">{{ formattedPrice(item.price) }}</span>
       </div>
     </div>
   </div>
@@ -45,6 +45,10 @@ const addToCart = (e: Event) => {
 
   alert("Added to cart")
 }
+
+const formattedPrice = (price: number): string => {
+  return `$${price.toFixed(2)}`;
+};
 
 </script>
 
@@ -111,7 +115,7 @@ const addToCart = (e: Event) => {
 
 .productItem__buttonItem {
   opacity: 0;
-  transition: transform var(--d-short), opacity var(--d-extrashort);
+  transition: transform var(--d-short), opacity var(--d-extrashort), background var(--d-short);
 }
 
 .productItem__base:hover .productItem__buttonItem {
