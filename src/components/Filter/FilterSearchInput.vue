@@ -6,7 +6,7 @@
         v-model="inputValue" autocomplete="off">
       <button type="button" class="filterSearchInput__resetBtn" v-show="inputValue.length" @click="resetInput">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 -.5 25 25">
-          <path fill="#000"
+          <path fill="currentColor"
             d="M6.97 16.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm6.06-3.94a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm-1.06-1.06a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm6.06-3.94a.75.75 0 0 0-1.06-1.06l1.06 1.06Zm-5 3.94a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.94 6.06a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-5-5a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM8.03 6.47a.75.75 0 0 0-1.06 1.06l1.06-1.06Zm0 11.06 5-5-1.06-1.06-5 5 1.06 1.06Zm5-5 5-5-1.06-1.06-5 5 1.06 1.06Zm-1.06 0 5 5 1.06-1.06-5-5-1.06 1.06Zm1.06-1.06-5-5-1.06 1.06 5 5 1.06-1.06Z" />
         </svg>
         <span class="sr-only">Reset search input</span>
@@ -65,14 +65,15 @@ watch(
   flex-direction: column;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: white;
+  background: var(--color-background);
   position: relative;
   height: 48px;
-  transition: border-color var(--d-extrashort);
+  transition: border-color var(--d-extrashort), background var(--d-short);
 }
 
 .filterSearchInput__inputContainer:hover {
   border-color: var(--color-border-hover);
+  background: var(--color-background-mute);
 }
 
 .filterSearchInput__inputContainer label {
@@ -94,6 +95,7 @@ watch(
   outline: none;
   padding: 0 12px;
   background: transparent;
+  color: var(--text);
 }
 
 .filterSearchInput__inputItem::-webkit-search-cancel-button {
@@ -121,6 +123,7 @@ watch(
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  color: var(--text);
 }
 
 .filterSearchInput__resetBtn:focus-visible {

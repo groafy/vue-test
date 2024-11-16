@@ -24,7 +24,7 @@
       </div>
       <div class="productItem__infoContainer">
         <ProductRatings :ratings="item.rating" />
-        <span>$ {{ item.price }}</span>
+        <span class="productItem__infoPrice">$ {{ item.price }}</span>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@ const addToCart = (e: Event) => {
   background: white;
   width: 100%;
   padding: 32px;
-  border-radius: 16px 16px;
+  border-radius: 16px 16px 0 0;
 }
 
 .productItem__imgItem {
@@ -182,6 +182,10 @@ const addToCart = (e: Event) => {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.productItem__infoPrice {
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 768px) {
