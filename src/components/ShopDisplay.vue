@@ -1,12 +1,13 @@
 <template>
   <div class="shopDisplay__base page-section">
-    <FilterBar />
-    <ProductList :isLoading="isLoading" :products="productItems" />
+    <FilterBar :isLoading="isLoading" :categories="productCategories" @category-change="onCategoryChange"
+      @category-reset="onCategoryReset" />
+    <ProductList :isLoading="isLoading" :products="productsComputed" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { IProductItem, ICategory } from "@/types";
 import ProductList from "./Products/ProductList.vue";
 import FilterBar from "./Filter/FilterBar.vue";
@@ -54,9 +55,35 @@ const loadProducts = async () => {
   }
 }
 
+const onCategoryReset = () => {
+  selectedCategories.value = [];
+}
+
+const onCategoryChange = (value: boolean, key: string) => {
+  if (value) {
+    selectedCategories.value.push(key);
+  } else {
+    const indexOfCategory = selectedCategories.value.indexOf(key);
+
+    if (indexOfCategory !== -1) {
+      selectedCategories.value.splice(indexOfCategory, 1);
+    }
+  }
+}
+
 const isLoading = ref<boolean>(false);
 const productCategories = ref<Array<ICategory>>([]);
 const productItems = ref<Array<IProductItem>>([]);
+const selectedCategories = ref<Array<string>>([]);
+const productsComputed = computed(() => {
+  if (!selectedCategories.value.length) {
+    return productItems.value;
+  }
+
+  return productItems.value.filter(item =>
+    selectedCategories.value.includes(item.category)
+  );
+})
 
 onMounted(() => {
   loadProducts();
