@@ -1,7 +1,7 @@
 <template>
   <HeaderNav />
   <main class="container--default">
-    <h1 class="page-section-sm h1">Welcome to HelloWorld.shop</h1>
+    <h1 class="page-section-sm h1">Welcome to HelloWorld</h1>
     <ShopDisplay />
   </main>
 </template>

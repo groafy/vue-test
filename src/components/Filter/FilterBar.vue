@@ -103,6 +103,10 @@ onMounted(() => {
   flex-direction: column;
   gap: 24px;
   grid-area: filter;
+
+  @media (min-width: 992px) {
+    padding: 0;
+  }
 }
 
 .filterBar__list {
@@ -125,11 +129,5 @@ onMounted(() => {
 
 .filterBar__resetBtn {
   justify-content: space-between;
-}
-
-@media only screen and (min-width: 992px) {
-  .filterBar__base {
-    padding: 0;
-  }
 }
 </style>

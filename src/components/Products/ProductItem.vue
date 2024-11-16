@@ -63,6 +63,18 @@ const formattedPrice = (price: number): string => {
   border-radius: 16px;
   transition: border-color var(--d-short);
   position: relative;
+
+  @media (min-width: 576px) {
+    grid-template-rows: 200px 1fr;
+  }
+
+  @media (min-width: 992px) {
+    grid-template-rows: 250px 1fr;
+  }
+
+  @media (min-width: 1400px) {
+    grid-template-rows: 300px 1fr;
+  }
 }
 
 .productItem__base:hover {
@@ -111,6 +123,18 @@ const formattedPrice = (price: number): string => {
   position: absolute;
   z-index: 35;
   top: 132px;
+
+  @media (min-width: 576px) {
+    top: 152px;
+  }
+
+  @media (min-width: 992px) {
+    top: 202px;
+  }
+
+  @media (min-width: 1400px) {
+    top: 252px;
+  }
 }
 
 .productItem__buttonItem {
@@ -187,36 +211,6 @@ const formattedPrice = (price: number): string => {
 
 .productItem__infoPrice {
   font-weight: bold;
-}
-
-@media only screen and (min-width: 768px) {
-  .productItem__base {
-    grid-template-rows: 200px 1fr;
-  }
-
-  .productItem__buttonContainer {
-    top: 152px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .productItem__base {
-    grid-template-rows: 250px 1fr;
-  }
-
-  .productItem__buttonContainer {
-    top: 202px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .productItem__base {
-    grid-template-rows: 300px 1fr;
-  }
-
-  .productItem__buttonContainer {
-    top: 252px;
-  }
 }
 
 @media (pointer:none),

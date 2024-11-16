@@ -175,10 +175,8 @@ onUnmounted(() => {
     "search"
     "filter"
     "content";
-}
 
-@media only screen and (min-width: 992px) {
-  .shopDisplay__base {
+  @media (min-width: 992px) {
     gap: 32px;
     grid-template-columns: 200px 1fr;
     grid-template-areas: "search search"
