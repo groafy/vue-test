@@ -1,5 +1,5 @@
 <template>
-  <div class="filterCategorySkeleton__base">
+  <div class="filterCategorySkeleton__base" aria-hidden="true">
     <div class="filterCategorySkeleton__inputMock">
       <div class="filterCategorySkeleton__slidingBg"></div>
     </div>

@@ -1,13 +1,14 @@
 <template>
   <section class="filterBar__base">
-    <ul class="filterBar__list" v-if="!isLoading">
+    <ul class="filterBar__list" v-if="!isLoading" aria-live="polite">
       <li v-for="category in categoriesReactive" :key="category.value" class="filterBar__listItem">
         <input type="checkbox" v-model="category.checked" class="checkbox-input" :id="getElementID(category.value)"
           @change="onInputChange($event, category)">
         <label :for="getElementID(category.value)">{{ category.displayName }} ({{ category.count }})</label>
       </li>
     </ul>
-    <ul class="filterBar__list" v-if="isLoading">
+    <ul class="filterBar__list" v-if="isLoading" aria-busy="true" aria-live="polite"
+      aria-label="Filter categories are loading">
       <li v-for="i in 4" :key="i">
         <FilterCategorySkeleton />
       </li>

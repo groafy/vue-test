@@ -1,16 +1,17 @@
 <template>
   <section class="productList__base">
-    <ul v-if="isLoading" class="productList__list">
+    <ul v-if="isLoading" class="productList__list" aria-busy="true" aria-live="polite"
+      aria-label="Product content is loading">
       <li v-for="i in 20" :key="i" class="productList__listItem">
         <ProductSkeleton />
       </li>
     </ul>
-    <ul class="productList__list" v-if="!isLoading">
+    <ul class="productList__list" v-if="!isLoading" aria-live="polite">
       <li v-for="product in products" :key="product.id" class="productList__listItem">
         <ProductItem :item="product" />
       </li>
     </ul>
-    <div v-if="!isLoading && !products.length" class="productList__notFoundContainer">
+    <div v-if="!isLoading && !products.length" class="productList__notFoundContainer" aria-live="assertive">
       <div class="productList__notFoundWrapper">
         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="124" height="124" fill="none"
           viewBox="-20 0 190 190">

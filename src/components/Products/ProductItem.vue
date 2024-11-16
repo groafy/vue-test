@@ -1,6 +1,6 @@
 <template>
   <div class="productItem__base">
-    <a href="#" class="productItem__link">
+    <a href="#" class="productItem__link" :aria-label="`Go to ${item.title} product page`">
       <span class="sr-only">Go to {{ item.title }} product page</span>
     </a>
     <div class="productItem__imgContainer">

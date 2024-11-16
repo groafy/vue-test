@@ -1,5 +1,5 @@
 <template>
-  <div class="productSkeleton__base">
+  <div class="productSkeleton__base" aria-hidden="true">
     <div class="productSkeleton__slidingBg"></div>
     <div class="productSkeleton__imgContainer"></div>
     <div class="productSkeleton__contentContainer"></div>
