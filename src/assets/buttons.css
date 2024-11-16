@@ -3,12 +3,30 @@
   font-weight: 600;
   font-size: 1rem;
   border-radius: 8px;
-  background: black;
+  background: var(--color-btn-bg);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: background var(--d-short);
+}
+
+.btn:hover {
+  background: var(--color-btn-bg-hover);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--default-focus);
+  outline-offset: 4px;
+}
+
+.btn.btn--primary {
+  background: var(--color-active);
+}
+
+.btn.btn--primary:hover {
+  background: var(--color-active-hover);
 }
