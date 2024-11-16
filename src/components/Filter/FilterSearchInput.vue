@@ -11,7 +11,11 @@
 <script setup lang="ts">
 import { ref, watch, defineEmits } from "vue";
 import { debounce } from "@/utils";
+interface IProps {
+  initSearch: string
+}
 
+const props = defineProps<IProps>();
 const emit = defineEmits(['searchChanged'])
 
 const onInputChange = (newVal: string) => {
@@ -20,12 +24,19 @@ const onInputChange = (newVal: string) => {
 };
 
 const debouncedOnInputChange = debounce(onInputChange, 300);
-const inputValue = ref("");
+const inputValue = ref(props.initSearch || "");
 
 watch(
   () => inputValue.value,
   (newVal) => {
     debouncedOnInputChange(newVal);
+  }
+);
+
+watch(
+  () => props.initSearch,
+  (newVal) => {
+    inputValue.value = newVal;
   }
 );
 </script>

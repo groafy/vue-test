@@ -31,7 +31,6 @@
 </template>
 
 <script setup lang="ts">
-// TODO FIX ACCESSIBILITY WITH BUTTON HOVER
 import { IProductItem } from '@/types';
 
 interface IProps {
@@ -211,6 +210,14 @@ const addToCart = (e: Event) => {
 
   .productItem__buttonContainer {
     top: 252px;
+  }
+}
+
+@media (pointer:none),
+(pointer:coarse) {
+  .productItem__buttonItem {
+    opacity: 1;
+    transform: translateY(-24px);
   }
 }
 </style>

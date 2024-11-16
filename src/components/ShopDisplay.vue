@@ -1,14 +1,14 @@
 <template>
   <div class="shopDisplay__base page-section">
-    <FilterSearchInput @search-changed="onSearchChanged" />
-    <FilterBar :isLoading="isLoading" :categories="productCategories" @category-change="onCategoryChange"
-      @category-reset="onCategoryReset" />
+    <FilterSearchInput @search-changed="onSearchChanged" :initSearch="searchTerm" />
+    <FilterBar :isLoading="isLoading" :categories="productCategories" :initCategories="urlCategories"
+      @category-change="onCategoryChange" @category-reset="onCategoryReset" />
     <ProductList :isLoading="isLoading" :products="productsComputed" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, onUnmounted } from "vue";
 import { IProductItem, ICategory } from "@/types";
 import ProductList from "./Products/ProductList.vue";
 import FilterBar from "./Filter/FilterBar.vue";
@@ -57,10 +57,18 @@ const loadProducts = async () => {
   }
 }
 
+const checkAndUpdateUrlParams = () => {
+  if (selectedCategories.value.length || searchTerm.value) {
+    updateUrlParams();
+  } else {
+    resetUrlParams();
+  }
+}
+
 const onCategoryReset = () => {
   selectedCategories.value = [];
 
-  resetUrlParams();
+  checkAndUpdateUrlParams();
 }
 
 const resetUrlParams = () => {
@@ -68,6 +76,7 @@ const resetUrlParams = () => {
   const params = new URLSearchParams(url.search);
 
   params.delete('category');
+  params.delete('search');
 
   history.pushState(null, '', url.pathname);
 };
@@ -81,6 +90,12 @@ const updateUrlParams = () => {
   selectedCategories.value.forEach(category => {
     params.append('category', category);
   });
+
+  if (searchTerm.value) {
+    params.set('search', searchTerm.value);
+  } else {
+    params.delete('search');
+  }
 
   history.pushState(null, '', `${url.pathname}?${params.toString()}`);
 };
@@ -96,22 +111,34 @@ const onCategoryChange = (value: boolean, key: string) => {
     }
   }
 
-  if (selectedCategories.value.length) {
-    updateUrlParams();
-  } else {
-    resetUrlParams();
-  }
+  checkAndUpdateUrlParams();
 }
 
 const onSearchChanged = (value: string) => {
   searchTerm.value = value;
+
+  checkAndUpdateUrlParams();
 }
+
+const updateFromUrl = () => {
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+
+  searchTerm.value = params.get('search') || '';
+  urlCategories.value = params.getAll('category');
+
+  // Leave this seperate to prevent dual prop rerendering
+  if (urlCategories.value.length) {
+    selectedCategories.value = urlCategories.value;
+  }
+};
 
 const isLoading = ref<boolean>(false);
 const productCategories = ref<Array<ICategory>>([]);
 const productItems = ref<Array<IProductItem>>([]);
 const selectedCategories = ref<Array<string>>([]);
 const searchTerm = ref<string>("");
+const urlCategories = ref<Array<string>>([]);
 
 
 const productsComputed = computed(() => {
@@ -128,6 +155,13 @@ const productsComputed = computed(() => {
 
 onMounted(() => {
   loadProducts();
+  updateFromUrl();
+
+  window.addEventListener('popstate', updateFromUrl);
+})
+
+onUnmounted(() => {
+  window.removeEventListener('popstate', updateFromUrl);
 })
 
 </script>

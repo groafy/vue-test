@@ -28,7 +28,8 @@ import FilterCategorySkeleton from "./FilterCategorySkeleton.vue";
 
 interface IProps {
   categories: ICategory[],
-  isLoading: boolean
+  isLoading: boolean,
+  initCategories: string[]
 }
 
 interface ICategoryReactive extends ICategory {
@@ -66,7 +67,7 @@ const createReactiveCategories = () => {
     props.categories.forEach(category => {
       categoriesReactive.value.push({
         ...category,
-        checked: false
+        checked: props.initCategories.includes(category.value) ? true : false
       })
     });
 
@@ -82,6 +83,10 @@ const hasSelectedValue = computed(() => {
 
 onMounted(() => {
   watch(() => props.categories, () => {
+    createReactiveCategories();
+  });
+
+  watch(() => props.initCategories, () => {
     createReactiveCategories();
   });
 })
