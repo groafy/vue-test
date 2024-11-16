@@ -1,6 +1,6 @@
 <template>
   <div class="shopDisplay__base page-section">
-    <FilterSearchInput @search-changed="onSearchChanged" :initSearch="searchTerm" />
+    <FilterSearchInput @search-changed="onSearchChanged" :initSearch="searchTerm" :isLoading="isLoading" />
     <FilterBar :isLoading="isLoading" :categories="productCategories" :initCategories="urlCategories"
       @category-change="onCategoryChange" @category-reset="onCategoryReset" />
     <ProductList :isLoading="isLoading" :products="productsComputed" />

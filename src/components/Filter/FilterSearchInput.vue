@@ -2,12 +2,12 @@
   <section class="filterSearchInput__base">
     <div class="filterSearchInput__inputContainer">
       <label for="search-input-filter" class="text">Search for products...</label>
-      <input type="search" id="search-input-filter" placeholder="" class="filterSearchInput__inputItem text"
-        v-model="inputValue" autocomplete="off">
+      <input :disabled="isLoading" type="search" id="search-input-filter" placeholder=""
+        class="filterSearchInput__inputItem text" v-model="inputValue" autocomplete="off">
       <button type="button" class="filterSearchInput__resetBtn" v-show="inputValue.length" @click="resetInput">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 -.5 25 25">
-          <path fill="currentColor"
-            d="M6.97 16.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm6.06-3.94a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm-1.06-1.06a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm6.06-3.94a.75.75 0 0 0-1.06-1.06l1.06 1.06Zm-5 3.94a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.94 6.06a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-5-5a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM8.03 6.47a.75.75 0 0 0-1.06 1.06l1.06-1.06Zm0 11.06 5-5-1.06-1.06-5 5 1.06 1.06Zm5-5 5-5-1.06-1.06-5 5 1.06 1.06Zm-1.06 0 5 5 1.06-1.06-5-5-1.06 1.06Zm1.06-1.06-5-5-1.06 1.06 5 5 1.06-1.06Z" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m16 8-8 8m0-8 8 8" />
         </svg>
         <span class="sr-only">Reset search input</span>
       </button>
@@ -16,11 +16,12 @@
 </template>
 
 <script setup lang="ts">
-// TODO DISABLE SEARCH WHEN IS LOADING
+// TODO DISABLE INPUT ON LOADING
 import { ref, watch, defineEmits } from "vue";
 import { debounce } from "@/utils";
 interface IProps {
-  initSearch: string
+  initSearch: string,
+  isLoading: boolean
 }
 
 const props = defineProps<IProps>();
@@ -80,6 +81,11 @@ watch(
   background: var(--color-background-mute);
 }
 
+.filterSearchInput__inputContainer:has(input:disabled) {
+  opacity: 0.66;
+  pointer-events: none;
+}
+
 .filterSearchInput__inputContainer label {
   position: absolute;
   bottom: calc(100% + 12px);
@@ -134,6 +140,6 @@ watch(
 
 .filterSearchInput__resetBtn:focus-visible {
   outline: 2px solid var(--default-focus);
-  outline-offset: -3px;
+  outline-offset: 3px;
 }
 </style>
