@@ -119,7 +119,6 @@ onMounted(() => {
 @media only screen and (min-width: 992px) {
   .filterBar__base {
     padding: 0;
-    border-bottom: 1px solid var(--color-border);
   }
 }
 </style>

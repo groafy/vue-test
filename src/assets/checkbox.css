@@ -3,11 +3,11 @@
   min-width: 24px;
   height: 24px;
   min-height: 24px;
-  border: 2px solid gray;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   margin: 0;
   appearance: none;
-  background-color: #fff;
+  background-color: var(--color-background);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -17,19 +17,19 @@
 }
 
 .checkbox-input:checked {
-  background-color: blue;
-  border-color: blue;
+  background-color: var(--color-active);
+  border-color: var(--color-active);
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTkuNjQgMTcuNDItNC43LTQuNzIgMS40LTEuMzkgMy4zIDMuMjggOC4wMy04IDEuMzkgMS40Mi05LjQyIDkuNDFaIi8+PC9zdmc+");
 }
 
 .checkbox-input:hover {
-  border-color: blue;
-  background-color: lightblue;
+  border-color: var(--color-border-hover);
+  background-color: var(--color-background-mute);
 }
 
 .checkbox-input:hover:checked {
-  background-color: darkblue;
-  border-color: darkblue;
+  background-color: var(--color-active-hover);
+  border-color: var(--color-active-hover);
 }
 
 .checkbox-input:focus-visible {

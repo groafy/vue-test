@@ -1,6 +1,6 @@
 <template>
   <div class="shopDisplay__base page-section">
-    <FilterSearchInput />
+    <FilterSearchInput @search-changed="onSearchChanged" />
     <FilterBar :isLoading="isLoading" :categories="productCategories" @category-change="onCategoryChange"
       @category-reset="onCategoryReset" />
     <ProductList :isLoading="isLoading" :products="productsComputed" />
@@ -96,21 +96,34 @@ const onCategoryChange = (value: boolean, key: string) => {
     }
   }
 
-  updateUrlParams();
+  if (selectedCategories.value.length) {
+    updateUrlParams();
+  } else {
+    resetUrlParams();
+  }
+}
+
+const onSearchChanged = (value: string) => {
+  searchTerm.value = value;
 }
 
 const isLoading = ref<boolean>(false);
 const productCategories = ref<Array<ICategory>>([]);
 const productItems = ref<Array<IProductItem>>([]);
 const selectedCategories = ref<Array<string>>([]);
-const productsComputed = computed(() => {
-  if (!selectedCategories.value.length) {
-    return productItems.value;
-  }
+const searchTerm = ref<string>("");
 
-  return productItems.value.filter(item =>
-    selectedCategories.value.includes(item.category)
-  );
+
+const productsComputed = computed(() => {
+  return productItems.value.filter(item => {
+    const matchesCategory = selectedCategories.value.length
+      ? selectedCategories.value.includes(item.category)
+      : true;
+
+    const matchesSearchTerm = item.title.toLowerCase().includes(searchTerm.value.toLowerCase());
+
+    return matchesCategory && matchesSearchTerm;
+  })
 })
 
 onMounted(() => {

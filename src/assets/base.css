@@ -47,6 +47,8 @@
   --b-lg: 992px;
 
   --default-focus: #33aaff;
+  --color-active: #4757ff;
+  --color-active-hover: #3644d6;
 }
 
 /* @media (prefers-color-scheme: dark) {
