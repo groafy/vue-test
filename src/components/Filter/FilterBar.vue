@@ -94,6 +94,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  grid-area: filter;
 }
 
 .filterBar__list {

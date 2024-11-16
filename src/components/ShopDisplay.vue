@@ -1,5 +1,6 @@
 <template>
   <div class="shopDisplay__base page-section">
+    <FilterSearchInput />
     <FilterBar :isLoading="isLoading" :categories="productCategories" @category-change="onCategoryChange"
       @category-reset="onCategoryReset" />
     <ProductList :isLoading="isLoading" :products="productsComputed" />
@@ -11,6 +12,7 @@ import { onMounted, ref, computed } from "vue";
 import { IProductItem, ICategory } from "@/types";
 import ProductList from "./Products/ProductList.vue";
 import FilterBar from "./Filter/FilterBar.vue";
+import FilterSearchInput from "./Filter/FilterSearchInput.vue";
 
 const getUrl = () => {
   return `https://fakestoreapi.com/products`;
@@ -122,12 +124,18 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
+  grid-template-areas:
+    "search"
+    "filter"
+    "content";
 }
 
 @media only screen and (min-width: 992px) {
   .shopDisplay__base {
     gap: 32px;
     grid-template-columns: 200px 1fr;
+    grid-template-areas: "search search"
+      "filter content";
   }
 }
 </style>

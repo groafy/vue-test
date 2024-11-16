@@ -29,6 +29,7 @@ const { products, isLoading } = defineProps<IProps>();
 <style scoped>
 .productList__base {
   width: 100%;
+  grid-area: content;
 }
 
 .productList__list {
