@@ -1,13 +1,18 @@
 <template>
   <section class="filterBar__base">
-    <ul class="filterBar__list">
+    <ul class="filterBar__list" v-if="!isLoading">
       <li v-for="category in categoriesReactive" :key="category.value" class="filterBar__listItem">
         <input type="checkbox" v-model="category.checked" class="checkbox-input" :id="getElementID(category.value)"
           @change="onInputChange($event, category)">
         <label :for="getElementID(category.value)">{{ category.displayName }} ({{ category.count }})</label>
       </li>
     </ul>
-    <button type="button" v-show="hasSelectedValue" @click="onCategoryResetClicked">
+    <ul class="filterBar__list" v-if="isLoading">
+      <li v-for="i in 4" :key="i">
+        <FilterCategorySkeleton />
+      </li>
+    </ul>
+    <button type="button" v-show="hasSelectedValue && !isLoading" @click="onCategoryResetClicked">
       <span>Remove selected filters</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m16 8-8 8m0-8 8 8" />
@@ -19,6 +24,7 @@
 <script setup lang="ts">
 import { ref, defineEmits, onMounted, watch, computed } from "vue";
 import { ICategory } from '@/types';
+import FilterCategorySkeleton from "./FilterCategorySkeleton.vue";
 
 interface IProps {
   categories: ICategory[],
@@ -63,6 +69,8 @@ const createReactiveCategories = () => {
         checked: false
       })
     });
+
+    categoriesReactive.value.sort((a, b) => b.count - a.count);
   }
 }
 

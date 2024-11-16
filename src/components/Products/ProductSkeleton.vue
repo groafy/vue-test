@@ -45,16 +45,6 @@
   background: var(--color-background-soft);
 }
 
-@keyframes skeleton-loading {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 @media only screen and (min-width: 768px) {
   .productSkeleton__base {
     grid-template-rows: 200px 1fr;
