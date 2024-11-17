@@ -79,18 +79,6 @@
     gap: 16px;
     text-indent: 0;
     grid-template-columns: 1fr;
-
-    @media (min-width: 576px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (min-width: 992px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (min-width: 1400px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
 
   .productList__listItem {
@@ -112,5 +100,23 @@
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+
+  @media (min-width: 576px) {
+    .productList__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 992px) {
+    .productList__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .productList__list {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 </style>

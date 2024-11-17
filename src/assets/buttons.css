@@ -10,10 +10,6 @@
   align-items: center;
   gap: 12px;
   transition: background var(--d-short);
-
-  @media (min-width: 992px) {
-    padding: 12px 24px;
-  }
 }
 
 .btn span,
@@ -46,4 +42,10 @@
 
 .btn.btn--primary:active {
   background: var(--color-active-clicked);
+}
+
+@media (min-width: 992px) {
+  .btn {
+    padding: 12px 24px;
+  }
 }

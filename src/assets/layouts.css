@@ -7,12 +7,14 @@
 
 .page-section {
   margin: var(--section-gap-mobile) 0;
-
-  @media (min-width: 992px) {
-    margin: var(--section-gap) 0;
-  }
 }
 
 .page-section-sm {
   margin: var(--section-gap-sm) 0;
+}
+
+@media (min-width: 992px) {
+  .page-section {
+    margin: var(--section-gap) 0;
+  }
 }

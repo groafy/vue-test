@@ -212,8 +212,10 @@
       "search"
       "filter"
       "content";
+  }
 
-    @media (min-width: 992px) {
+  @media (min-width: 992px) {
+    .shopDisplay__base {
       gap: 32px;
       grid-template-columns: 200px 1fr;
       grid-template-areas:

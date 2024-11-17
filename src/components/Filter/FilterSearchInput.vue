@@ -101,10 +101,6 @@
     position: relative;
     height: max(3rem, 48px);
     transition: border-color var(--d-extrashort), background var(--d-short);
-
-    @media (min-width: 992px) {
-      max-width: 700px;
-    }
   }
 
   .filterSearchInput__inputContainer:hover {
@@ -177,5 +173,11 @@
   .filterSearchInput__resetBtn:focus-visible {
     outline: 2px solid var(--default-focus);
     outline-offset: 3px;
+  }
+
+  @media (min-width: 992px) {
+    .filterSearchInput__inputContainer {
+      max-width: 700px;
+    }
   }
 </style>

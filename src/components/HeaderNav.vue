@@ -70,8 +70,10 @@
     width: 1px;
     height: 1px;
     clip: rect(0, 0, 0, 0);
+  }
 
-    @media (min-width: 992px) {
+  @media (min-width: 992px) {
+    .headerNav__logoTitle {
       position: static;
       overflow: visible;
       width: auto;

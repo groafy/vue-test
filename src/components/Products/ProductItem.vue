@@ -119,18 +119,6 @@
     border-radius: 16px;
     transition: border-color var(--d-short);
     position: relative;
-
-    @media (min-width: 576px) {
-      grid-template-rows: 200px 1fr;
-    }
-
-    @media (min-width: 992px) {
-      grid-template-rows: 250px 1fr;
-    }
-
-    @media (min-width: 1400px) {
-      grid-template-rows: 300px 1fr;
-    }
   }
 
   .productItem__base:hover {
@@ -181,18 +169,6 @@
     top: 132px;
     padding: 0 12px;
     width: 100%;
-
-    @media (min-width: 576px) {
-      top: 152px;
-    }
-
-    @media (min-width: 992px) {
-      top: 202px;
-    }
-
-    @media (min-width: 1400px) {
-      top: 252px;
-    }
   }
 
   .productItem__buttonItem {
@@ -305,6 +281,36 @@
   .productItem__buttonFallbackItem:focus-visible {
     outline: 2px solid var(--default-focus);
     outline-offset: 3px;
+  }
+
+  @media (min-width: 576px) {
+    .productItem__buttonContainer {
+      top: 152px;
+    }
+
+    .productItem__base {
+      grid-template-rows: 200px 1fr;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .productItem__buttonContainer {
+      top: 202px;
+    }
+
+    .productItem__base {
+      grid-template-rows: 250px 1fr;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .productItem__buttonContainer {
+      top: 252px;
+    }
+
+    .productItem__base {
+      grid-template-rows: 300px 1fr;
+    }
   }
 
   /* When there is no cursor, hover wount work so that why i switch to a fallback button

@@ -271,16 +271,11 @@
 
 <style lang="css" scoped>
   .filterBar__base {
-    padding: 12px 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 24px;
     grid-area: filter;
-
-    @media (min-width: 992px) {
-      padding: 0;
-    }
   }
 
   .filterBar__list {
@@ -307,10 +302,6 @@
 
   .filterBar__list--loading {
     display: none;
-
-    @media (min-width: 992px) {
-      display: flex;
-    }
   }
 
   .filterBar__toggle {
@@ -325,10 +316,6 @@
     color: var(--color-text);
     position: relative;
     overflow: hidden;
-
-    @media (min-width: 992px) {
-      display: none;
-    }
   }
 
   .filterBar__toggle.loading {
@@ -359,8 +346,16 @@
     transform: rotate(180deg);
   }
 
-  .filterBar__toggleContent {
-    @media (min-width: 992px) {
+  @media (min-width: 992px) {
+    .filterBar__list--loading {
+      display: flex;
+    }
+
+    .filterBar__toggle {
+      display: none;
+    }
+
+    .filterBar__toggleContent {
       display: block !important;
     }
   }
