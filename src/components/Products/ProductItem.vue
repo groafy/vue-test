@@ -52,7 +52,7 @@ const { item } = defineProps<IProps>();
 
 const addToCart = (e: Event) => {
   e.stopPropagation();
-
+  // TODO Maybe change icon to checkmark if added ? 
   alert("Added to fake cart")
 }
 

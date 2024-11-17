@@ -50,7 +50,7 @@
 }
 
 .productSkeleton__imgContainer {
-  border-radius: 16px 16px;
+  border-radius: 16px 16px 0 0;
   background: white;
   height: 100%;
 }

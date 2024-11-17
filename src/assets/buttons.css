@@ -27,6 +27,10 @@
   background: var(--color-btn-bg-hover);
 }
 
+.btn:active {
+  background: var(--color-btn-bg-clicked);
+}
+
 .btn:focus-visible {
   outline: 2px solid var(--default-focus);
   outline-offset: 4px;
@@ -38,4 +42,8 @@
 
 .btn.btn--primary:hover {
   background: var(--color-active-hover);
+}
+
+.btn.btn--primary:active {
+  background: var(--color-active-clicked);
 }
