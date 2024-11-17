@@ -99,7 +99,7 @@
     border-radius: 8px;
     background: var(--color-background);
     position: relative;
-    height: 48px;
+    height: max(3rem, 48px);
     transition: border-color var(--d-extrashort), background var(--d-short);
 
     @media (min-width: 992px) {
@@ -119,7 +119,7 @@
 
   .filterSearchInput__inputContainer label {
     position: absolute;
-    bottom: calc(100% + 12px);
+    bottom: calc(100% + max(0.75rem, 12px));
     transition: bottom var(--d-extrashort);
     left: 12px;
     white-space: nowrap;
@@ -148,7 +148,7 @@
       .filterSearchInput__inputItem:placeholder-shown
     )
     > label {
-    bottom: 10px;
+    bottom: max(0.625rem, 10px);
     cursor: text;
   }
 
@@ -161,8 +161,8 @@
 
   .filterSearchInput__resetBtn {
     position: absolute;
-    height: 48px;
-    width: 48px;
+    height: max(3rem, 48px);
+    width: max(3rem, 48px);
     right: 0;
     top: 0;
     background: transparent;
