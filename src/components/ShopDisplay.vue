@@ -17,6 +17,11 @@
 </template>
 
 <script setup lang="ts">
+  // IMPORTANT - Im not using the vue suspense -> fallback method because I find it easier
+  // to handle the data from the parent in this case (since multiple components use the same data)
+  // Is only the product list used the api data it would be better to just use the suspense pattern
+  // since I wouldnt have to track isLoading manually
+
   import { onMounted, ref, computed, onUnmounted } from "vue";
   import { type IProductItem, type ICategory } from "@/types";
   import ProductList from "./Products/ProductList.vue";
@@ -69,6 +74,8 @@
     } catch (err) {
       console.error(err);
       // Would be better to show some toast instead of alert
+      // since its not as annoying as an alert, but i didnt want
+      // to add another dependency
       alert("There was an error loading the products.");
     } finally {
       isLoading.value = false;

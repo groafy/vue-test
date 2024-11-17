@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+  // This component is mainly just to test that the themes work
   import ThemeSwitcher from "./ThemeSwitcher.vue";
 </script>
 

@@ -4,6 +4,8 @@
       <label for="search-input-filter" class="text">
         Search for products...
       </label>
+      <!-- Placeholder here is for an animation only, the label is displayed as a fake placeholder
+      that later gets shifted up to original position -->
       <input
         :disabled="isLoading"
         type="search"

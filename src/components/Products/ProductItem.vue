@@ -91,6 +91,8 @@
   const { item } = defineProps<IProps>();
 
   const addToCart = (e: Event) => {
+    // Here it would be a good idea to store the product in a store
+    // for example useActiveCartStore -> add product
     e.stopPropagation();
 
     alert("Added to fake cart");
@@ -235,6 +237,8 @@
     width: 100%;
   }
 
+  /* Using lineclamp for better visuals and make the product cards more readable
+  Some of the text is too long and doesnt look good when displayed */
   .productItem__textTitle {
     display: -webkit-box;
     overflow: hidden;
@@ -299,6 +303,8 @@
     outline-offset: 3px;
   }
 
+  /* When there is no cursor, hover wount work so that why i switch to a fallback button
+  that has the same functionality, just accessible on mobile */
   @media (pointer: none), (pointer: coarse) {
     .productItem__buttonItem {
       display: none;

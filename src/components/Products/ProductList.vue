@@ -22,6 +22,7 @@
         <ProductItem :item="product" />
       </li>
     </ul>
+    <!-- Using assertive to announce that nothing was found, and that the user knows about it -->
     <div
       v-if="!isLoading && !products.length"
       class="productList__notFoundContainer"
