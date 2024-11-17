@@ -1,3 +1,5 @@
+/* Using this for accessibility */
+
 .sr-only {
   position: absolute;
   overflow: hidden;

@@ -89,6 +89,7 @@
     checkAndUpdateUrlParams();
   };
 
+  // Differentiate between reset url params and update url params
   const resetUrlParams = () => {
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
@@ -177,13 +178,17 @@
   });
 
   onMounted(() => {
+    // Load the products
     loadProducts();
+    // Set previous items from url params
     updateFromUrl();
 
+    // Watch for history change
     window.addEventListener("popstate", updateFromUrl);
   });
 
   onUnmounted(() => {
+    // Remove history change listener to free memory
     window.removeEventListener("popstate", updateFromUrl);
   });
 </script>

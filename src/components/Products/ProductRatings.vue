@@ -1,5 +1,6 @@
 <template>
   <ul class="productRatings__list">
+    <!-- Give meaningful label to describe this component -->
     <li
       v-for="i in 5"
       :key="i"
@@ -24,6 +25,7 @@
       </svg>
     </li>
     <li>
+      <!-- Here visually only show to rate, but return a better more descriptive label for screen readers -->
       <span class="sr-only">{{ getRatingDescription() }}</span>
       <span aria-hidden="true" class="smallText">({{ rate }})</span>
     </li>

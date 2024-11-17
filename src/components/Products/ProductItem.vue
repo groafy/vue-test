@@ -1,10 +1,6 @@
 <template>
   <div class="productItem__base">
-    <a
-      href="#"
-      class="productItem__link"
-      :aria-label="`Go to ${item.title} product page`"
-    >
+    <a href="#" class="productItem__link">
       <span class="sr-only">Go to {{ item.title }} product page</span>
     </a>
     <div class="productItem__imgContainer">
@@ -40,6 +36,7 @@
           <span>Add to Cart</span>
         </button>
       </div>
+      <!-- Fallback button for when user doesnt have mouse so the hover effect wouldnt trigger -->
       <div class="productItem__buttonFallbackContainer">
         <button
           type="button"
@@ -95,10 +92,11 @@
 
   const addToCart = (e: Event) => {
     e.stopPropagation();
-    // TODO Maybe change icon to checkmark if added ?
+
     alert("Added to fake cart");
   };
 
+  // Format price to have everything in the same format
   const formattedPrice = (price: number): string => {
     return `$${price.toFixed(2)}`;
   };

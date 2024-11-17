@@ -6,7 +6,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  // Again, this is only a skeleton for better seo and less layout shift
+</script>
 
 <style scoped>
   .productSkeleton__base {

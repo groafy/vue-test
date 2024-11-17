@@ -118,6 +118,7 @@
   const props = defineProps<IProps>();
 
   const getElementID = (value: string) => {
+    // Remove special characters so it can be a valid html id
     return `element-${value
       .replace(/[^a-zA-Z0-9\s]/g, "")
       .replace(/\s+/g, "")}-id`;
@@ -141,6 +142,7 @@
     emit("categoryChange", checkbox.checked, category.value);
   };
 
+  // Function to create reactive categories from props to prevent prop mutations
   const createReactiveCategories = () => {
     if (!props.categories.length) return;
 
@@ -166,6 +168,7 @@
     }
   };
 
+  // Keyboard navigation for better accessibility
   const onAccordionKeyDown = (e: KeyboardEvent) => {
     const { key } = e;
     const activeElement = document.activeElement;
@@ -223,9 +226,11 @@
   const isAccordionOpen = ref<boolean>(false);
   const parentRef = ref<HTMLSelectElement>();
   const toggleRef = ref<HTMLButtonElement>();
+  // Only show reset button if at least one category is selected
   const hasSelectedValue = computed(() =>
     categoriesReactive.value.some((x) => x.checked)
   );
+  // Title generated based on selected filters (or no filters)
   const toggleAccordionTitle = computed(() => {
     const selectedFilterCount = categoriesReactive.value.filter(
       (category) => category.checked

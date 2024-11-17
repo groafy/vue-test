@@ -60,6 +60,7 @@
   };
 
   const setValue = (value: boolean, changeRefValue: boolean = false) => {
+    // Set class to html element so that i can then later set root
     if (value) {
       document.documentElement.classList.add(CLASS_DARK);
       document.documentElement.classList.remove(CLASS_LIGHT);
@@ -78,6 +79,7 @@
   const CLASS_LIGHT = "light";
 
   onMounted(() => {
+    // Check default browser option so that it matches the app
     setValue(
       window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches,

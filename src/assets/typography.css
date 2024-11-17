@@ -1,3 +1,6 @@
+/* Using rem instead of px because its better for accessibility
+User could change the font size in their browser and it needs to react */
+
 .h1 {
   font-size: 2.5rem;
   font-weight: bold;

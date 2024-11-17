@@ -1,5 +1,6 @@
 <template>
   <section class="productList__base">
+    <!-- Using arialive polite for screen readers for them to announce the loading / loaded state -->
     <ul
       v-if="isLoading"
       class="productList__list"
@@ -11,6 +12,7 @@
         <ProductSkeleton />
       </li>
     </ul>
+    <!-- Same here, annouce that it is loaded and has changes -->
     <ul class="productList__list" v-if="!isLoading" aria-live="polite">
       <li
         v-for="product in products"

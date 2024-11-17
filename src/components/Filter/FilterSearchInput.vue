@@ -1,9 +1,9 @@
 <template>
   <section class="filterSearchInput__base">
     <div class="filterSearchInput__inputContainer">
-      <label for="search-input-filter" class="text"
-        >Search for products...</label
-      >
+      <label for="search-input-filter" class="text">
+        Search for products...
+      </label>
       <input
         :disabled="isLoading"
         type="search"
@@ -41,7 +41,6 @@
 </template>
 
 <script setup lang="ts">
-  // TODO DISABLE INPUT ON LOADING
   import { ref, watch, defineEmits } from "vue";
   import { debounce } from "@/utils";
   interface IProps {
@@ -67,10 +66,13 @@
   watch(
     () => inputValue.value,
     (newVal) => {
+      // Real world app would probably use debounce so I added it here
+      // even though this is a simple example with computed filtering
       debouncedOnInputChange(newVal);
     }
   );
 
+  // Only watch for the init value from url, not dual input binding
   watch(
     () => props.initSearch,
     (newVal) => {

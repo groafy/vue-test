@@ -9,7 +9,10 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+  // This is only a loading skeleton and not a real component so thats why the aria-hidden
+  // Using this so that there is no layout shift for better seo
+</script>
 
 <style lang="css" scoped>
   .filterCategorySkeleton__base {
