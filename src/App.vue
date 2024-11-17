@@ -7,9 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import ShopDisplay from "@/components/ShopDisplay.vue";
-import HeaderNav from "@/components/HeaderNav.vue";
+  import ShopDisplay from "@/components/ShopDisplay.vue";
+  import HeaderNav from "@/components/HeaderNav.vue";
 </script>
-
 
 <style scoped></style>
