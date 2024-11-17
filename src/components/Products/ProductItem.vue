@@ -205,14 +205,14 @@
 
   .productItem__base:hover .productItem__buttonItem {
     opacity: 1;
-    transform: translateY(-12px);
+    transform: translateY(min(-0.75rem, -12px));
   }
 
   .productItem__buttonItem:focus-visible {
     outline: 2px solid var(--default-focus);
     outline-offset: 4px;
     opacity: 1;
-    transform: translateY(-12px);
+    transform: translateY(min(-0.75rem, -12px));
   }
 
   /* Needed here to be able to see with enough contrast with the image */
