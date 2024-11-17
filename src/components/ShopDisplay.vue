@@ -61,6 +61,9 @@
 
   const loadProducts = async () => {
     try {
+      // Again, not using suspense here since pretty much all of the components
+      // use the same data (wouldnt make sense to make them into async components)
+      // so thats why i manually track isLoading
       isLoading.value = true;
 
       // For testing skeletons only
