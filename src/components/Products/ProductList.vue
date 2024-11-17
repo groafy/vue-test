@@ -13,6 +13,8 @@
       </li>
     </ul>
     <!-- Same here, annouce that it is loaded and has changes -->
+    <!-- Not using it here, but it would be nice to implement a load more funtionality for mobile, 
+    having 20 products per page would be a bit too much to scroll through. -->
     <ul class="productList__list" v-if="!isLoading" aria-live="polite">
       <li
         v-for="product in products"

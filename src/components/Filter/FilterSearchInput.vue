@@ -62,7 +62,7 @@
     inputValue.value = "";
   };
 
-  const debouncedOnInputChange = debounce(onInputChange, 300);
+  const debouncedOnInputChange = debounce(onInputChange, 300); // Using 300ms since its enough for this example and not too long to hinder UX
   const inputValue = ref(props.initSearch || "");
 
   watch(
@@ -70,6 +70,8 @@
     (newVal) => {
       // Real world app would probably use debounce so I added it here
       // even though this is a simple example with computed filtering
+      // Sidenote- this is also better in my opinion for the history api since
+      // it doesnt get called on every keystroke
       debouncedOnInputChange(newVal);
     }
   );

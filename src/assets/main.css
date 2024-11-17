@@ -1,3 +1,6 @@
+/* I like to keep my styles in a separate file because i find it easier to
+manage and keep track of the different styles. */
+
 @import './base.css';
 @import './layouts.css';
 @import './buttons.css';

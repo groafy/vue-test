@@ -1,6 +1,8 @@
 <template>
   <header class="headerNav__base">
     <div class="headerNav__wrapper container--default">
+      <!-- In a realworld app this would probably be a router link, 
+      but in this example we dont use router so this is just for show -->
       <div class="headerNav__logoContainer">
         <svg
           xmlns="http://www.w3.org/2000/svg"

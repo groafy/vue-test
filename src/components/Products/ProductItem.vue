@@ -1,5 +1,9 @@
 <template>
   <div class="productItem__base">
+    <!-- In a real world app this could be a router-link to the product page, 
+    but in this example we dont use router so this is just for show.  -->
+    <!-- No need for a arialabel since its not an empty link, its using sr-only 
+    text so screen readers can still read the content of where the link is heading -->
     <a href="#" class="productItem__link">
       <span class="sr-only">Go to {{ item.title }} product page</span>
     </a>
@@ -72,9 +76,9 @@
       </div>
       <div class="productItem__infoContainer">
         <ProductRatings :ratings="item.rating" />
-        <span class="productItem__infoPrice introText">{{
-          formattedPrice(item.price)
-        }}</span>
+        <span class="productItem__infoPrice introText">
+          {{ formattedPrice(item.price) }}
+        </span>
       </div>
     </div>
   </div>

@@ -1,4 +1,6 @@
 <template>
+  <!-- This could be an aside element but on mobile its not on the side
+  and i dont feel the need for it to be in two seperate components -->
   <section class="filterBar__base" ref="parentRef">
     <!-- Show accordion only on mobile for scalability -->
     <button
@@ -31,11 +33,16 @@
       </svg>
     </button>
     <!-- Accordion content (filter items) -->
+    <!-- Here i am using v-show and v-if, reason being that the parent uses gap:24px and 
+    it causes an offset when it is loaded, so i place it in the dom only after loading.
+    v-show later is only for accordion controlls so that is doesnt need to be re-added when
+    opening and closing accordion -->
     <div
       id="filterBar-list"
       @keydown="onAccordionKeyDown"
       class="filterBar__toggleContent"
       v-show="isAccordionOpen"
+      v-if="!isLoading"
       role="region"
       aria-labelledby="filter-accordion-toggle"
     >
@@ -267,6 +274,7 @@
     padding: 12px 0;
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 24px;
     grid-area: filter;
 
