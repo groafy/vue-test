@@ -48,11 +48,6 @@
     width: 100%;
     height: 100%;
     animation: skeleton-loading 1s ease-in-out infinite;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 12%,
-      rgba(209, 209, 209, 0.5) 44%,
-      rgba(255, 255, 255, 0) 76%
-    );
+    background: var(--gradient-skeleton);
   }
 </style>

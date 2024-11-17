@@ -1,6 +1,8 @@
 <template>
   <HeaderNav />
   <main class="container--default">
+    <!-- This title here is mainly for accesibility purposes, since I later
+    on use h2 in the product items -->
     <h1 class="page-section-sm h1">Welcome to HelloWorld</h1>
     <ShopDisplay />
   </main>

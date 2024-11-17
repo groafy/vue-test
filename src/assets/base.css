@@ -44,11 +44,6 @@
   --d-short: 300ms;
   --d-medium: 400ms;
 
-  --b-xs: 375px;
-  --b-sm: 576px;
-  --b-md: 768px;
-  --b-lg: 992px;
-
   --default-focus: #33aaff;
   --color-active: #4757ff;
   --color-active-clicked: #5e6cff;
@@ -58,7 +53,13 @@
   --color-btn-bg-hover: var(--vt-c-black-soft);
   --color-btn-bg-clicked: var(--vfake-c-black-clicked);
 
-  --bs-active: 0px 2px 4px 0px rgba(0, 0, 0, 0.10), 0px 2px 8px 0px rgba(30, 105, 200, 0.33)
+  --bs-active: 0px 2px 4px 0px rgba(0, 0, 0, 0.10), 0px 2px 8px 0px rgba(30, 105, 200, 0.33);
+  --gradient-skeleton: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 12%,
+    rgba(209, 209, 209, 0.5) 44%,
+    rgba(255, 255, 255, 0) 76%
+  );
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,3 +1,6 @@
+/* Creating a custom checkbox so that is can look the same
+in every browser and device. Also I find it looks better */
+
 .checkbox-input {
   width: 24px;
   min-width: 24px;

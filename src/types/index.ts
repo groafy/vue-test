@@ -1,3 +1,6 @@
+// Here I place global interfaces, component specific interfaces I keep 
+// in the component itself
+
 export interface IProductRating {
   rate: number,
   count: number
