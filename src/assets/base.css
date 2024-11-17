@@ -35,6 +35,7 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+  --section-gap-mobile: 80px;
   --section-gap-sm: 40px;
 
   --page-max-width: 1680px;

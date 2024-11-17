@@ -1,19 +1,34 @@
 <template>
-  <section class="filterBar__base">
-    <ul class="filterBar__list" v-if="!isLoading" aria-live="polite">
-      <li v-for="category in categoriesReactive" :key="category.value" class="filterBar__listItem">
-        <input type="checkbox" v-model="category.checked" class="checkbox-input" :id="getElementID(category.value)"
-          @change="onInputChange($event, category)">
-        <label :for="getElementID(category.value)" class="text">{{ category.displayName }} ({{ category.count
-          }})</label>
-      </li>
-    </ul>
-    <ul class="filterBar__list" v-if="isLoading" aria-busy="true" aria-live="polite"
+  <section class="filterBar__base" ref="parentRef">
+    <!-- Show accordion only on mobile for scalability -->
+    <button class="filterBar__toggle" :class="{ 'loading': isLoading }" :disabled="isLoading"
+      @keydown="onAccordionKeyDown" @click="toggleFilterAccordion" :aria-expanded="isAccordionOpen"
+      aria-controls="filterBar-list" ref="toggleRef" id="filter-accordion-toggle">
+      <span class="text">{{ toggleAccordionTitle }}</span>
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6" />
+      </svg>
+    </button>
+    <!-- Accordion content (filter items) -->
+    <div id="filterBar-list" @keydown="onAccordionKeyDown" class="filterBar__toggleContent" v-show="isAccordionOpen"
+      role="region" aria-labelledby="filter-accordion-toggle">
+      <ul class="filterBar__list" v-if="!isLoading" aria-live="polite">
+        <li v-for="category in categoriesReactive" :key="category.value" class="filterBar__listItem">
+          <input type="checkbox" v-model="category.checked" data-wp-filtercheck class="checkbox-input"
+            :id="getElementID(category.value)" @change="onInputChange($event, category)">
+          <label :for="getElementID(category.value)" class="text">{{ category.displayName }} ({{ category.count
+            }})</label>
+        </li>
+      </ul>
+    </div>
+    <!-- Loading state with skeletons to combat layout shift -->
+    <ul class="filterBar__list filterBar__list--loading" v-if="isLoading" aria-busy="true" aria-live="polite"
       aria-label="Filter categories are loading">
       <li v-for="i in 4" :key="i">
         <FilterCategorySkeleton />
       </li>
     </ul>
+    <!-- Button to reset all active filters -->
     <button type="button" class="btn filterBar__resetBtn" v-show="hasSelectedValue && !isLoading"
       @click="onCategoryResetClicked" aria-label="Reset all current active filter categories">
       <span aria-hidden="true">Reset</span>
@@ -47,6 +62,7 @@ const getElementID = (value: string) => {
 }
 
 const onCategoryResetClicked = () => {
+  isAccordionOpen.value = false;
   resetCategoriesSelected();
   emit('categoryReset');
 }
@@ -64,19 +80,93 @@ const onInputChange = (e: Event, category: ICategory) => {
 }
 
 const createReactiveCategories = () => {
-  if (props.categories.length) {
-    categoriesReactive.value = props.categories.map(category => ({
-      ...category,
-      checked: props.initCategories.includes(category.value),
-    })).sort((a, b) => b.count - a.count);
+  if (!props.categories.length) return;
+
+  categoriesReactive.value = props.categories.map(category => ({
+    ...category,
+    checked: props.initCategories.includes(category.value),
+  })).sort((a, b) => b.count - a.count);
+}
+
+const toggleFilterAccordion = () => {
+  isAccordionOpen.value = !isAccordionOpen.value;
+}
+
+const setFocus = (index: number, elements: HTMLInputElement[]) => {
+  if (0 > index) {
+    elements[elements.length - 1]?.focus();
+  } else if (index > elements.length - 1) {
+    elements[0]?.focus();
+  } else {
+    elements[index]?.focus();
+  }
+}
+
+const onAccordionKeyDown = (e: KeyboardEvent) => {
+  const { key } = e;
+  const activeElement = document.activeElement;
+  const categoryInputElements = [...parentRef.value?.querySelectorAll('[data-wp-filtercheck]') as unknown as HTMLInputElement[]];
+  const indexOfElement = categoryInputElements.indexOf(activeElement as HTMLInputElement);
+
+  switch (key) {
+    case 'Esc':
+    case 'Escape':
+      if (!isAccordionOpen.value) break;
+
+      isAccordionOpen.value = false;
+      toggleRef.value?.focus();
+      break;
+    case 'Down':
+    case 'ArrowDown':
+      e.preventDefault();
+      e.stopPropagation();
+
+      setFocus(indexOfElement + 1, categoryInputElements);
+      break;
+    case 'Up':
+    case 'ArrowUp':
+      e.preventDefault();
+      e.stopPropagation();
+
+      setFocus(indexOfElement - 1, categoryInputElements);
+      break;
+    case 'Home':
+      e.preventDefault();
+      e.stopPropagation();
+
+      setFocus(0, categoryInputElements);
+      break;
+
+    case 'End':
+      e.preventDefault();
+      e.stopPropagation();
+
+      setFocus(-1, categoryInputElements);
+      break;
+
+    default: break;
   }
 }
 
 const categoriesReactive = ref<Array<ICategoryReactive>>([]);
+const isAccordionOpen = ref<boolean>(false);
+const parentRef = ref<HTMLSelectElement>();
+const toggleRef = ref<HTMLButtonElement>();
 const hasSelectedValue = computed(() => categoriesReactive.value.some(x => x.checked));
+const toggleAccordionTitle = computed(() => {
+  const selectedFilterCount = categoriesReactive.value.filter(category => category.checked).length;
+
+  if (selectedFilterCount === 0) {
+    return "Filter by category...";
+  }
+
+  return `Applied filters (${selectedFilterCount})`;
+});
 
 
 onMounted(() => {
+  createReactiveCategories();
+
   watch(() => props.categories, () => {
     createReactiveCategories();
   });
@@ -85,7 +175,6 @@ onMounted(() => {
     createReactiveCategories();
   });
 })
-
 </script>
 
 <style lang="css" scoped>
@@ -121,5 +210,65 @@ onMounted(() => {
 
 .filterBar__resetBtn {
   justify-content: space-between;
+}
+
+.filterBar__list--loading {
+  display: none;
+
+  @media (min-width: 992px) {
+    display: flex;
+  }
+}
+
+.filterBar__toggle {
+  display: flex;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  padding: 12px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-text);
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.filterBar__toggle.loading {
+  opacity: 0.66;
+}
+
+.filterBar__toggle.loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: skeleton-loading 1s ease-in-out infinite;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 12%, rgba(209, 209, 209, 0.5) 44%, rgba(255, 255, 255, 0) 76%);
+}
+
+.filterBar__toggle:focus-visible {
+  outline: 2px solid var(--default-focus);
+  outline-offset: 4px;
+}
+
+.filterBar__toggle svg {
+  transition: transform var(--d-extrashort);
+}
+
+.filterBar__toggle[aria-expanded="true"]>svg {
+  transform: rotate(180deg);
+}
+
+.filterBar__toggleContent {
+  @media (min-width: 992px) {
+    display: block !important;
+  }
 }
 </style>

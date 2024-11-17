@@ -6,7 +6,11 @@
 }
 
 .page-section {
-  margin: var(--section-gap) 0;
+  margin: var(--section-gap-mobile) 0;
+
+  @media (min-width: 992px) {
+    margin: var(--section-gap) 0;
+  }
 }
 
 .page-section-sm {
